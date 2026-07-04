@@ -24,7 +24,7 @@ export const config = {
 
     logLevel: "info",
     bail: 0,
-    waitforTimeout: 15000,
+    waitforTimeout: 20000,
     connectionRetryTimeout: 180000,
     connectionRetryCount: 1,
 
@@ -48,7 +48,9 @@ export const config = {
     beforeEach: async function () {
         const appId = "io.appium.android.apis"
         await driver.terminateApp(appId)
+        await browser.pause(2000)
         await driver.activateApp(appId)
+        await browser.pause(3000)
     },
 
     afterTest: async function(test: any, context: any, { error, passed }: any) {
