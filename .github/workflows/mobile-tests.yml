@@ -53,7 +53,16 @@ jobs:
           emulator-boot-timeout: 900
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -memory 4096
           disable-animations: true
-          script: npm run wdio
+          script: |
+            echo "Waiting for emulator to be fully ready..."
+            adb wait-for-device
+            adb shell input keyevent 82
+            sleep 10
+            echo "Installing UIAutomator2 server manually..."
+            appium driver run uiautomator2 install-server || true
+            sleep 5
+            echo "Starting tests..."
+            npm run wdio
 
       - name: Generate Allure Report
         if: always()
