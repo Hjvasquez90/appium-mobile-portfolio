@@ -12,7 +12,7 @@ export const config = {
     capabilities: [{
         platformName: "Android",
         "appium:deviceName": "Pixel_6",
-        "appium:platformVersion": "9.0",
+        "appium:platformVersion": "10",
         "appium:automationName": "UiAutomator2",
         "appium:app": path.join(process.cwd(), "apps", "ApiDemos-debug.apk"),
         "appium:newCommandTimeout": 240,
