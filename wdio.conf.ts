@@ -17,13 +17,16 @@ export const config = {
         "appium:app": path.join(process.cwd(), "apps", "ApiDemos-debug.apk"),
         "appium:newCommandTimeout": 240,
         "appium:autoGrantPermissions": true,
+        "appium:uiautomator2ServerInstallTimeout": 120000,
+        "appium:uiautomator2ServerLaunchTimeout": 120000,
+        "appium:adbExecTimeout": 120000,
     }],
 
     logLevel: "info",
     bail: 0,
-    waitforTimeout: 10000,
-    connectionRetryTimeout: 120000,
-    connectionRetryCount: 3,
+    waitforTimeout: 15000,
+    connectionRetryTimeout: 180000,
+    connectionRetryCount: 1,
 
     services: ["appium"],
 
@@ -39,7 +42,13 @@ export const config = {
 
     mochaOpts: {
         ui: "bdd",
-        timeout: 60000
+        timeout: 120000
+    },
+
+    beforeEach: async function () {
+        const appId = "io.appium.android.apis"
+        await driver.terminateApp(appId)
+        await driver.activateApp(appId)
     },
 
     afterTest: async function(test: any, context: any, { error, passed }: any) {

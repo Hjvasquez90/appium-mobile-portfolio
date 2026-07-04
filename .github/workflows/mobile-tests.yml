@@ -51,9 +51,9 @@ jobs:
           arch: x86_64
           profile: pixel_6
           avd-name: Pixel_6
+          emulator-boot-timeout: 900
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -memory 4096
           disable-animations: true
-          boot-timeout: 900
           script: npm run wdio
 
       - name: Generate Allure Report
