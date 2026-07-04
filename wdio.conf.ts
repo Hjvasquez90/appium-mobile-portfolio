@@ -12,7 +12,7 @@ export const config = {
     capabilities: [{
         platformName: "Android",
         "appium:deviceName": "Pixel_6",
-        "appium:platformVersion": "13.0",
+        "appium:platformVersion": "9.0",
         "appium:automationName": "UiAutomator2",
         "appium:app": path.join(process.cwd(), "apps", "ApiDemos-debug.apk"),
         "appium:newCommandTimeout": 240,
@@ -24,7 +24,7 @@ export const config = {
 
     logLevel: "info",
     bail: 0,
-    waitforTimeout: 20000,
+    waitforTimeout: 30000,
     connectionRetryTimeout: 180000,
     connectionRetryCount: 1,
 
@@ -43,14 +43,6 @@ export const config = {
     mochaOpts: {
         ui: "bdd",
         timeout: 120000
-    },
-
-    beforeEach: async function () {
-        const appId = "io.appium.android.apis"
-        await driver.terminateApp(appId)
-        await browser.pause(2000)
-        await driver.activateApp(appId)
-        await browser.pause(3000)
     },
 
     afterTest: async function(test: any, context: any, { error, passed }: any) {
